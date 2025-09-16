@@ -1,12 +1,6 @@
 import argparse
 import sys
 
-def total_length(text):
-    count = 0
-    for char in text:
-        count += 1
-    return count
-
 def upercase(text):
     count = 0
     for char in text:
@@ -50,7 +44,7 @@ def digits(text):
     return count
     
 def main(input: str):
-    print(f"The text contains {total_length(input)} characters")
+    print(f"The text contains {len(input)} characters")
     print(f"{upercase(input)} upper letters")
     print(f"{lowercase(input)} lower letters")
     print(f"{punctuations(input)} punctuation marks")
