@@ -55,4 +55,12 @@ Create a function called ft_tqdm. The function must copy the function tqdm with 
 Allowed functions: none
 
 ex09:
+Create your first package in python the way you want, it will appear in the list of installed packages when you type the command "pip list" and display its characteristics when you type "pip show -v ft_package"
 Allowed functions: PyPI or any library for creation package
+- build package:        python3 -m pip install --upgrade build   
+                        python3 -m build
+- install package:      pip install ./dist/ft_package_janeway-0.0.1.tar.gz
+                        pip install ./dist/ft_package_janeway-0.0.1-py3-none-any.whl
+- python package list:  pip list
+- list package details: pip show -v ft_package
+- uninstall package:    pip uninstall ft_package_janeway
