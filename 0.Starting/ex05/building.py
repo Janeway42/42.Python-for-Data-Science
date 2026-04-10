@@ -1,12 +1,14 @@
 import argparse
 import sys
 
+
 def upercase(text):
     count = 0
     for char in text:
         if 'A' <= char <= 'Z':
             count += 1
     return count
+
 
 def lowercase(text):
     count = 0
@@ -15,12 +17,14 @@ def lowercase(text):
             count += 1
     return count
 
+
 def spaces(text):
     count = 0
     for char in text:
-        if char == " " or char == "\n":
+        if char == "\n" or char == " ":
             count += 1
     return count
+
 
 def punctuations(text):
     # Sentence endings: period, question mark, exclamation point
@@ -36,15 +40,17 @@ def punctuations(text):
             count += 1
     return count
 
+
 def digits(text):
     count = 0
     for char in text:
         if '0' <= char <= '9':
             count += 1
     return count
-    
+
+
 def main(input: str):
-    print(f"The text contains {len(input)} characters")
+    print(f"\nThe text {input} contains {len(input)} characters")
     print(f"{upercase(input)} upper letters")
     print(f"{lowercase(input)} lower letters")
     print(f"{punctuations(input)} punctuation marks")
@@ -52,10 +58,9 @@ def main(input: str):
     print(f"{digits(input)} digits")
 
 
-        
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-            description="Script that scrapes images from a given website"
+            description="Script that analyses text"
         )
     parser.add_argument("items", nargs="*", help="text to be analysed")
     args = parser.parse_args()
@@ -68,12 +73,10 @@ if __name__ == "__main__":
             main(user_input)
         else:
             raise AssertionError("No input received from stdin.")
-        
+
     else:
         try:
             assert len(args.items) == 1, "more than one argument is provided"
             main(args.items[0])
         except (ValueError, AssertionError) as e:
             print("AssertionError:", e)
-
-

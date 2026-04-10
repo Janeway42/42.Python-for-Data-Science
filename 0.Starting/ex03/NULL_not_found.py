@@ -13,12 +13,14 @@ def NULL_not_found(object: any) -> int:
             return 0
         
         if object == 0:
+            # works only if object is int
             try:
                 remainder = object % 2
                 if remainder == 0:
                     print(f"Zero: {object} <class 'int'>")
                     return 0
             except:
+                # do nothing, move along the program
                 pass 
         
         if object != object:

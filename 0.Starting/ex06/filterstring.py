@@ -3,23 +3,32 @@ import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-            description="Script that filters strings based on the length of the words"
-        )
-    parser.add_argument("items", nargs="*", help="text to be analysed and word size")
+        description="Script that filters strings \
+            based on the length of the words"
+    )
+    parser.add_argument("items", nargs="*",
+                        help="text to be analysed and word size")
     args = parser.parse_args()
 
     try:
         assert len(args.items) == 2, "the arguments are bad"
 
-        string = args.items[0]
-        number = args.items[1]
-        assert number.isdigit() == True, "the arguments are bad"
-        number = int(number)
+        try:
+            number = int(args.items[1])
+        except ValueError:
+            assert False, "the arguments are bad"
 
+        # "one two three!" will trigger shell expansion failed error.
+        #    use 'one two three!' to get the right error
+        string = args.items[0]
         if not all(char.isalpha() or char.isspace() for char in string):
             raise AssertionError("the arguments are bad")
-        
-        filtered = list(ft_filter(lambda word: len(word) > number, string.split()))
+
+        # list comprehension expression:
+        #    what to produce + where to get the items + optional filtering
+        # lambda = small anonymous expression: [lambda arguments: expression]
+        filtered = list(ft_filter(lambda word: len(word) > number,
+                                  string.split()))
 
         print(f"{filtered}")
 

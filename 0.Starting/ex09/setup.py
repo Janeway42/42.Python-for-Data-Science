@@ -4,13 +4,13 @@ setup(
     name="ft_package_janeway",
     version="0.0.1",
     author="janeway",
-    author_email="janeway@example.com",
+    author_email="janeway@example.example",
     description="A small example package",
     readme="README.md",
     packages=find_packages(),
     license="MIT",
-    url="https://github.com/janeway/ft_package",
-    classifiers = [
+    url="https://github.com/janeway/ft_package_janeway",
+    classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
