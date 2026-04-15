@@ -49,8 +49,8 @@ and displays a progress bar"""
             bar_length = max(10, terminal_width - len(text_front) -
                              len(text_back) - 5)
 
-            filled = int(bar_length * (i / length))
-            bar = "=" * filled + ">" + " " * (bar_length - filled)
+            completed_percent = int(bar_length * (i / length))
+            bar = "=" * completed_percent + ">" + " " * (bar_length - completed_percent)
 
             print(f"\r{text_front}|[{bar}]|{text_back}", end="", flush=True)
 
