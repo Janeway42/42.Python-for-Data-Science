@@ -3,6 +3,8 @@ import sys
 
 
 def upercase(text):
+    """Function upercase outputs the number of \
+upercase characters in the string"""
     count = 0
     for char in text:
         if 'A' <= char <= 'Z':
@@ -11,6 +13,8 @@ def upercase(text):
 
 
 def lowercase(text):
+    """Function lowercase outputs the number of \
+lowercase characters in the string"""
     count = 0
     for char in text:
         if 'a' <= char <= 'z':
@@ -19,6 +23,8 @@ def lowercase(text):
 
 
 def spaces(text):
+    """Function spaces outputs the number of \
+space chacaters in the string"""
     count = 0
     for char in text:
         if char == "\n" or char == " ":
@@ -27,6 +33,8 @@ def spaces(text):
 
 
 def punctuations(text):
+    """Function punctuations outputs the number of \
+punctuation characters in the string"""
     # Sentence endings: period, question mark, exclamation point
     # Comma, colon, and semicolon
     # Dash and hyphen
@@ -42,6 +50,7 @@ def punctuations(text):
 
 
 def digits(text):
+    """Function digits outputs the number of digits in the string"""
     count = 0
     for char in text:
         if '0' <= char <= '9':
@@ -50,6 +59,11 @@ def digits(text):
 
 
 def main(input: str):
+    # print(upercase.__doc__)
+    # print(lowercase.__doc__)
+    # print(punctuations.__doc__)
+    # print(spaces.__doc__)
+    # print(digits.__doc__)
     print(f"\nThe text {input} contains {len(input)} characters")
     print(f"{upercase(input)} upper letters")
     print(f"{lowercase(input)} lower letters")

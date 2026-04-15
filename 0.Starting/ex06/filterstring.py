@@ -1,6 +1,13 @@
 from ft_filter import ft_filter
 import argparse
 
+
+def check_length(item, number):
+    """Function check_length uses a lamda to verify
+if the length is greater than the number provided"""
+    return (lambda word: len(word) > number)(item)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Script that filters strings \
@@ -24,11 +31,7 @@ if __name__ == "__main__":
         if not all(char.isalpha() or char.isspace() for char in string):
             raise AssertionError("the arguments are bad")
 
-        # list comprehension expression:
-        #    what to produce + where to get the items + optional filtering
-        # lambda = small anonymous expression: [lambda arguments: expression]
-        filtered = list(ft_filter(lambda word: len(word) > number,
-                                  string.split()))
+        filtered = ft_filter(check_length, string, number)
 
         print(f"{filtered}")
 

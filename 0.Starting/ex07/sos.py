@@ -21,6 +21,8 @@ MORSE_DICTIONARY = {
 
 
 def translate_to_morse_code(text):
+    """Function translate_to_morse_code takes a regular text
+and translates it to morse code"""
     encoded_text = []
 
     for char in text.upper():

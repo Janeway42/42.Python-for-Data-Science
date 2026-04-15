@@ -1,3 +1,4 @@
+import shutil
 from time import time
 
 
@@ -16,45 +17,42 @@ def estimated_remaining_time(items, items_done, start_time):
 
     hours = int(estimated_time_left // 3600)
     minutes = int((estimated_time_left % 3600) // 60)
-    seconds = int(estimated_time_left % 60)
-    miliseconds = int((estimated_time_left - int(estimated_time_left)) * 1000)
-    return f"{hours:02d}:{minutes:02d}:{seconds:02d}:{miliseconds:02d}"
+    return f"{hours:02d}:{minutes:02d}"
 
 
 def format_elapsed_time(start, end):
     elapsed = end - start
     hours = int(elapsed // 3600)
     minutes = int((elapsed % 3600) // 60)
-    seconds = int(elapsed % 60)
-    miliseconds = int((elapsed - int(elapsed)) * 1000)
-    return f"{hours:02d}:{minutes:02d}:{seconds:02d}:{miliseconds:02d}"
+    return f"{hours:02d}:{minutes:02d}"
 
 
 def ft_tqdm(lst: range) -> None:
-    bar_length = 50
+    """Function ft_tqdm mimics the behaviour of tqdm
+and displays a progress bar"""
     start_time = time()
 
     try:
         length = len(lst)
-        print(f"len: {length}")
 
         for i, item in enumerate(lst, start=1):
-            percent = i / length
-            filled = int(bar_length * percent)
-            bar = '=' * filled + '>' + ' ' * (bar_length - filled)
+            terminal_width = shutil.get_terminal_size().columns
             time_now = time()
 
-            percent_completed = int(percent * 100)
-            # visual alignment of percentage completed
-            beautifying_space_percent = " " * (3 - len(str(percent_completed)))
-            # visual alignment of the step number completed
-            beautifying_space_steps = " " * (len(str(length)) - len(str(i)))
+            percent = int(i / length * 100)
+            text_front = f"{percent:3d}%"
+            text_back = f" {i}/{length} \
+[{format_elapsed_time(start_time, time_now)}\
+<{estimated_remaining_time(length, i + 1, start_time)},  \
+{average_speed(start_time, i + 1)}]"
 
-            print(f"{beautifying_space_percent}{percent_completed}%|[{bar}]| \
-                  {beautifying_space_steps}{i}/{length} \
-                    [{format_elapsed_time(start_time, time_now)} < \
-                    {estimated_remaining_time(length, i + 1, start_time)}, \
-                    {average_speed(start_time, i + 1)}]")
+            bar_length = max(10, terminal_width - len(text_front) -
+                             len(text_back) - 5)
+
+            filled = int(bar_length * (i / length))
+            bar = "=" * filled + ">" + " " * (bar_length - filled)
+
+            print(f"\r{text_front}|[{bar}]|{text_back}", end="", flush=True)
 
             yield item
     except TypeError as e:
