@@ -3,12 +3,14 @@ from time import time
 
 
 def average_speed(start_time, items_done):
+    """Function average_speed calculates the average speed"""
     elapsed_time = time() - start_time
     speed_rate = items_done / elapsed_time if elapsed_time > 0 else 0
     return f"{speed_rate:.2f}it/s"
 
 
 def estimated_remaining_time(items, items_done, start_time):
+    """Function estimated_remaining_time calculates the remaining time"""
     elapsed_time = time() - start_time
     items_left = items - items_done
     average_time_per_item = elapsed_time / items_done
@@ -21,6 +23,7 @@ def estimated_remaining_time(items, items_done, start_time):
 
 
 def format_elapsed_time(start, end):
+    """Function format_elapsed_time formats the display of the time"""
     elapsed = end - start
     hours = int(elapsed // 3600)
     minutes = int((elapsed % 3600) // 60)
@@ -50,8 +53,13 @@ and displays a progress bar"""
                              len(text_back) - 5)
 
             completed_percent = int(bar_length * (i / length))
-            bar = "=" * completed_percent + ">" + " " * (bar_length - completed_percent)
+            bar = "=" * completed_percent + ">" + " " * \
+                (bar_length - completed_percent)
 
+            # \r moves the cursor back at the begining
+            # end="" prevents printf from making a new line
+            # flush=True forces python to immediatelly update the terminal
+            #     (otherwise it might buffer output)
             print(f"\r{text_front}|[{bar}]|{text_back}", end="", flush=True)
 
             yield item
